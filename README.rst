@@ -33,7 +33,7 @@ a shell script, a batch file is a special text file that when run will execute (
 Once configured, the ``run_pipeline.bat`` will do the following:
 
 #. Configure :code:`conda` by creating a :code:`.condarc` file (if this does not already exist) with user entered Artifactory credentials.
-#. Add the python scripts folder to the path environment variable so that the :code:`conda` command can be run in the Command Prompt.
+#. Add the python scripts folder to the path environment variable so that the :code:`conda` command can be run in the Command Prompt.[#]_
 #. Configure :code:`pip` by creating a :code:`pip.ini` file (if this does not already exist) with user entered Artifactory credentials.
 #. Clone the git repository of the specified project (HTTP or SSH depending on user input).
 #. Create or select (if it already exists) a named virtual environment.
@@ -86,6 +86,8 @@ These variables should be as follows:
      - Where the ``pip.ini`` file should be saved.
      - This shouldn't need to be changed
 
+
+.. [#] The environment variable that this step sets will only persist within the batch script - i.e. if you don't already have your python scripts path in your path environment variable, ``conda`` commands in the command prompt won't work. If you want to fix this, you need to manually add your python scripts location to your local path variable. To do this search for ``Edit Environment Variables for Your Account`` in your programs and edit the path variable to include your python scripts folder.
 Run run_pipeline.bat
 ********************
 Once the user has updated these variables according to the above table they are ready to run the ``run_pipeline.bat`` script which will run the pipeline. To do this you simply need to find the ``.bat`` script in the file explorer and double click on it to execute. Before they run the batch script for the first time we recommend they delete or archive any existing ``pip.ini`` or ``.condarc`` files so that the correct artifactory urls are used. The ``pip.ini`` file can be found in the ``%appdata%\pip`` folder and the ``.condarc`` file can be found in the ``%userprofile%`` folder. 

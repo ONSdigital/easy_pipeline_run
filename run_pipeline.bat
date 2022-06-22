@@ -66,11 +66,11 @@ IF %ERRORLEVEL% EQU 0 (
 ) ELSE (
     IF EXIST "%python-scripts-location%" (
         ECHO %python-scripts-location% not present in PATH env variable, adding it now
-        setx PATH "%PATH%%python-scripts-location%;"
+        set "PATH=%python-scripts-location%;%PATH%"
         set ERRORLEVEL=0
     )
 )
-
+pause
 :: Check if pip (config) exists
 IF NOT EXIST "%pip-config-location%\pip.ini" (
     ECHO %pip-config-location% does not exist
@@ -104,7 +104,7 @@ IF %in_git_repo%==0 (
         ECHO repo cloned version %code-version-number% into %local-repo-location%\%repo-name%
     )
 )
-
+pause
 :: Check if environment exists by piping output of conda env list to variable and check (regex) if user specified environment name is in variable.
 conda env list| findstr /c:%virtual-env-name%
 

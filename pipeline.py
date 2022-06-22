@@ -24,7 +24,7 @@ else:
 # Import settings from the specified config file
 cfg = ConfigParser()
 cfg.read_file(open(config_file_path))
-global_config = cfg.config_section("global")
+global_config = cfg["global"]
 
 print(global_config)
 

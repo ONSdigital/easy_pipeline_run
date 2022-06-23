@@ -33,7 +33,7 @@ a shell script, a batch file is a special text file that when run will execute (
 Once configured, the ``run_pipeline.bat`` will do the following:
 
 #. Configure :code:`conda` by creating a :code:`.condarc` file (if this does not already exist) with user entered Artifactory credentials.
-#. Add the python scripts folder to the path environment variable so that the :code:`conda` command can be run in the Command Prompt.[#]_
+#. Add the python scripts folder to the path environment variable so that the :code:`conda` command can be run in the Command Prompt. [#]_
 #. Configure :code:`pip` by creating a :code:`pip.ini` file (if this does not already exist) with user entered Artifactory credentials.
 #. Clone the git repository of the specified project (HTTP or SSH depending on user input).
 #. Create or select (if it already exists) a named virtual environment.

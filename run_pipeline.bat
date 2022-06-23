@@ -66,7 +66,7 @@ IF %ERRORLEVEL% EQU 0 (
 ) ELSE (
     IF EXIST "%python-scripts-location%" (
         ECHO %python-scripts-location% not present in PATH env variable, adding it now
-        setx PATH "%PATH%%python-scripts-location%;"
+        set "PATH=%python-scripts-location%;%PATH%"
         set ERRORLEVEL=0
     )
 )

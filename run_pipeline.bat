@@ -136,7 +136,7 @@ IF %in_git_repo%==0 (
 pip install -r requirements.txt
 python pipeline.py --config-file=%config_file%
 
-CALL deactivate
+CALL conda deactivate
 
 ECHO End of batch script, press any button to exit.
 pause

@@ -1,6 +1,9 @@
 # Core imports
 import argparse
+import time
 from configparser import ConfigParser
+
+from rectangle import rectangle
 
 ###########################
 # Configuration and Setup #
@@ -24,8 +27,8 @@ else:
 # Import settings from the specified config file
 cfg = ConfigParser()
 cfg.read_file(open(config_file_path))
+
 global_config = cfg["global"]
+rct_cfg = cfg["rectangle"]
 
-print(global_config)
-
-# Some code to do something complex
+rectangle(global_config, rct_cfg)

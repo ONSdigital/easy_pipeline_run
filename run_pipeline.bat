@@ -4,14 +4,14 @@ setlocal ENABLEDELAYEDEXPANSION
 
 :: git related setup - repo will be created if it doesn't already exist
 :: Note that none of these need to be set if running from inside the repo already
-set local-repo-location= &::enter the path to your repo here
-set remote-repo-url= &::enter the URL of your repo here
-set repo-name= &::set the repo name. This should be exactly the name of the repo folder.
+set local-repo-location=D:\Test_Repos&::enter the path to your repo here
+set remote-repo-url=https://github.com/ONSdigital/easy_pipeline_run.git&::enter the URL of your repo here
+set repo-name=easy_pipeline_run&::set the repo name. This should be exactly the name of the repo folder.
 
 :: virtual env setup - virtual environment will be created if it doesn't exist already
-set python-scripts-location= &::enter the path of the scripts folder in the base installation of Python
-set python-version= &::enter the version of Python you are using, e.g. 3.6.8
-set virtual-env-name= &::name your virutual environment e.g. my_proj_env
+set python-scripts-location=C:\Python36\Scripts&::enter the path of the scripts folder in the base installation of Python
+set python-version=3.6.9&::enter the version of Python you are using, e.g. 3.6.8
+set virtual-env-name=epr-369&::name your virutual environment e.g. my_proj_env
 
 :: Choose the config file - should exist in the config folder witin the repo
 :: Note that if none is set default_config.ini will be used
@@ -97,11 +97,11 @@ IF NOT EXIST "%pip-config-location%\pip.ini" (
 :: Check if we are already inside a repo
 IF %in_git_repo%==0 ( 
     :: Check if local repo location (folder) exists and create if not
-    IF NOT EXIST "%local-repo-location%\csew_support" (
+    IF NOT EXIST "%local-repo-location%\%repo-name%" (
         ECHO Local repository not found. Creating it now.
         :: Clone git repo from user specified version
         git clone %remote-repo-url% || ECHO ERROR - terminating script && pause && EXIT /b
-        ECHO repo cloned version %code-version-number% into %local-repo-location%\csew_support
+        ECHO repo cloned version %code-version-number% into %local-repo-location%\%repo-name%
     )
 )
 
@@ -136,7 +136,7 @@ IF %in_git_repo%==0 (
 pip install -r requirements.txt
 python pipeline.py --config-file=%config_file%
 
-CALL deactivate
+CALL conda deactivate
 
 ECHO End of batch script, press any button to exit.
 pause
